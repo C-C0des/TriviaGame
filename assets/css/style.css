@@ -1,23 +1,19 @@
 body { 
-	margin: 0 auto;
+	margin: auto;
 }
 
 header{
+    background-color:black;
+    color:white;
+    padding:60px;
     margin-bottom:50px;
+    text-align:center;
+    font-size:40px;
     width: 100%;
 }
 
-h1,
-h2,
-h3 {
-	color: white;
-	padding: 25px;
-}
 
-.answer,
-#timer {
-	font-weight: 900;
-}
+
 
 #start {
 	color: black;
