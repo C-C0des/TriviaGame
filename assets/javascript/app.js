@@ -62,7 +62,7 @@ $(document).ready(function() {
 
 	function timeUp() {
 		if (counter === 0) {
-			$("#gamearea").html("<p>You ran out of time!</p>");
+			$("#gamearea").html("<p>Time Up!</p>");
 			incorrect++;
 			var correctAnswer = questions[currentQuestion].correctAnswer;
 			$("#gamearea").append(
@@ -116,7 +116,8 @@ $(document).ready(function() {
 		}
 		else {
 			scoreBoard();
-		}
+        }
+        console.log(counter);
 	}
 
 	
@@ -135,6 +136,8 @@ $(document).ready(function() {
     }
 
     $("#startBtn").click(nextQuestion);
+
+    startGame();
 
    
 	$("#gamearea").on("click", ".ansOptions", (function() {
