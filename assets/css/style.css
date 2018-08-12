@@ -13,10 +13,19 @@ header{
 }
 
 
-
-
 #start {
 	color: black;
+}
+
+footer{
+    background:black;
+    color:white;
+    padding:30px;
+    bottom:0px; 
+    position:fixed;
+    width: 100%;
+    margin-top:10px;
+    text-align:center;
 }
 
 
