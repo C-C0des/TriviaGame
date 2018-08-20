@@ -1,18 +1,18 @@
-
+$(document).ready(function() {
 
 
     $("#startBtn").on("click", function(){
-		$("#startBtn").hide();
+		$("#startBtn").remove();
 		newQuestion();
 	});
 
 	$(document).on("click", ".answer-button", function(e){
 		clicked(e);
-	})
+	});
 
 	$(document).on("click", "#play-again", function(){
 		resetGame();
-	})
+	});
 
 
 	
@@ -48,8 +48,8 @@
 	
 	 function newQuestion() {
 		clock = setInterval(countDown, 1000);
-		$("#gamearea").append('<h4> <span id = "timer">10 </span></h5>');
-		 $("#gamearea").append('<h6>' + questions[currentQuestion].question + '</h6>');
+		$("#gamearea").append('<p> <span id = "timer">10 </span> seconds left</p>');
+		 $("#gamearea").html('<h4>' + questions[currentQuestion].question + '</h4>');
 		 
 		 for (var i = 0; i < questions[currentQuestion].ansOptions.length; i++) {
 		    $("#gamearea").append('<button class="answer-button" id="button-' + i + ' "data-name="' + questions[currentQuestion].ansOptions[i] + '">'+ questions[currentQuestion].ansOptions[i] + '</button>');	
@@ -60,18 +60,17 @@
 	function nextQuestion() {
 		timer = 10;
 		$("#timer").html(timer);
-		currentQuestion++
+		currentQuestion++;
 		newQuestion();		
 	}
 
 	 function timeUp(){
 		 clearInterval(clock);
-		 $("#timer").html(timer);
 		 unanswered++;
 		 $("#gamearea").html("<h3> Time up! </h3>"); 
-		 $("#gamearea").append("<h3> The correct answer was: " + questions[currentQuestion].correctAnswer + "</h3>");
+		 $("#gamearea").append("<p> The correct answer was: " + questions[currentQuestion].correctAnswer + "</p>");
 		
-		 if (currentQuestion === questions.length -1 ){
+		 if (currentQuestion == questions.length - 1 ){
 			 setTimeout(scoreBoard, 3 * 1000);
 		 } else {
 			 setTimeout(nextQuestion, 3 * 1000);
@@ -82,7 +81,7 @@
 	 function scoreBoard(){
 		clearInterval(clock);
 		$("#gamearea").html("<p> <strong> Game Over!  </strong> </p>");
-		$("#gamearea").append('<p>Correct Answers: ' + correct + ' Incorrect Answers:' + incorrect+ '</p>');
+		$("#gamearea").append('<p>Correct Answers: ' + correct + ' ' +' Incorrect Answers:' + incorrect+ '</p>');
 		$("#gamearea").append('<p>Unanswered: ' + unanswered + '</p>');
 		$("#gamearea").append('<button id = "play-again">  Play Again </button>');
 	 }
@@ -101,8 +100,8 @@
 	 function win() {
 		clearInterval(clock);
 		correct++;
-		$("#gamearea").html("<h3> Correct! </h3>");
-		if (currentQuestion === questions.length - 1 ){
+		$("#gamearea").html("<h4> Correct! </h4>");
+		if (currentQuestion == questions.length - 1 ){
 			setTimeout(scoreBoard, 3 * 1000);
 		} else{
 			setTimeout(nextQuestion, 3 * 1000);
@@ -112,7 +111,7 @@
 	 function loss() {
 		clearInterval(clock);
 		incorrect++;
-		$("#gamearea").html("<h3> Incorrect! </h3>");
+		$("#gamearea").html("<h4> Incorrect! </h4>");
 		$("#gamearea").append("<p> The correct answer was: " + questions[currentQuestion].correctAnswer + "</h3>");
 		if (currentQuestion == questions.length - 1 ){
 			setTimeout(scoreBoard, 3 * 1000);
@@ -134,7 +133,7 @@
 
 
 
-	
+});
 
 
 
