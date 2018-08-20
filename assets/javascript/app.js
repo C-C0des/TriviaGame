@@ -1,10 +1,25 @@
-$(document).ready(function() {
-   
-   
+
+
+
+    $("#startBtn").on("click", function(){
+		$("#startBtn").hide();
+		newQuestion();
+	});
+
+	$(document).on("click", ".answer-button", function(e){
+		clicked(e);
+	})
+
+	$(document).on("click", "#play-again", function(){
+		resetGame();
+	})
+
+
+	
     var questions = [
       {
 	    question: "Who founded Marvel Comics?",
-	    ansOptions: ["Stan Lee", "Martin Goodman", "John Adams", "Bill Burr"],
+	    ansOptions: ["Martin York", "Martin Goodman", "Martin Dryden ", "Martin Canterbury "],
 	    correctAnswer: "Martin Goodman",
 	    image: "<img src='assets/images/'>"
 	  }, 
@@ -17,138 +32,109 @@ $(document).ready(function() {
       
 
       var currentQuestion = 0;
-      var counter = 20;
       var correct = 0;
-      var incorrect = 0;
+	  var incorrect = 0;
+	  var timer = 10;
+	  var unanswered = 0;
 	  
-
-	function newQuestion() {
-    	$("#gamearea").append("<p><strong>" + 
-    		questions[currentQuestion].question + 
-    		"</p><p class='ansOptions'>" + 
-    		questions[currentQuestion].ansOptions[0] + 
-    		"</p><p class='ansOptions'>" + 
-    		questions[currentQuestion].ansOptions[1] + 
-    		"</p><p class='ansOptions'>" + 
-    		questions[currentQuestion].ansOptions[2] + 
-    		"</p><p class='ansOptions'>" + 
-    		questions[currentQuestion].ansOptions[3] + 
-    		"</strong></p>");
-	}
-
-	function win() {
-		$("#gamearea").html("<p>Correct</p>");
-		correct++;
-		var correctAnswer = questions[currentQuestion].correctAnswer;
-		$("#gamearea").append(
-			correctAnswer + 
-			questions[currentQuestion].image);
-		setTimeout(nextQuestion, 1000 * 2);
-		currentQuestion++;
-	}
-
-
-	function loss() {
-		$("#gamearea").html("<p>Wrong</p>");
-		incorrect++;
-		var correctAnswer = questions[currentQuestion].correctAnswer;
-		$("#gamearea").append(
-			correctAnswer + 
-			questions[currentQuestion].image);
-		setTimeout(nextQuestion, 1000 * 2);
-		currentQuestion++;
-	}
-
-
-	function timeUp() {
-		if (counter === 0) {
-			$("#gamearea").html("<p>Time Up!</p>");
-			incorrect++;
-			var correctAnswer = questions[currentQuestion].correctAnswer;
-			$("#gamearea").append(
-				correctAnswer + 
-				questions[currentQuestion].image);
-			setTimeout(nextQuestion, 1000 * 2);
-			currentQuestion++;
-		}
-	}
-
-	function scoreBoard() {
-		if (correct === questions.length) {
-			var gameOverMsg = "Awesome";
-		}
-		else if (correct > incorrect) {
-			var gameOverMsg = "Nice try";
-		}
-		else {
-			var gameOverMsg = "Good Luck next time";
-		}
-		$("#gamearea").html("<p>" + gameOverMsg + "</p>" + "<p>You got <strong>" + 
-			correct + "</strong> questions right.</p>" + 
-			"<p>You got <strong>" + incorrect + "</strong> questions wrong.</p>");
-		$("#gamearea").append("<button id='startBtn'>Play Again</button>");
-		resetGame();
-		$("#startBtn").click(nextQuestion);
-	}
-
-	function timer() {
-		clock = setInterval(countDown, 1000);
-		function countDown() {
-			if (counter < 1) {
-				clearInterval(clock);
-				timeUp();
-			}
-			if (counter> 0) {
-				counter--;
-			}
-			$("#timer").html("<strong>" + counter+ "</strong>");
-		}
-	}
-
-
-	function nextQuestion() {
-		if (currentQuestion < questions.length) {
-			counter = 20;
-			$("#gamearea").html("<p>" + counter+ "</span> seconds left!</p>");
-			newQuestion();
-			timer();
+    
+	  function countDown() {
+		  timer--;
+		  $("#timer").html(timer);
+		if (timer === 0) {
 			timeUp();
 		}
-		else {
-			scoreBoard();
-        }
-        console.log(counter);
-	}
-
+	   }
 	
-	function resetGame() {
-		currentQuestion = 0;
-		correct = 0;
-		incorrect = 0;
+	 function newQuestion() {
+		clock = setInterval(countDown, 1000);
+		$("#gamearea").append('<h4> <span id = "timer">10 </span></h5>');
+		 $("#gamearea").append('<h6>' + questions[currentQuestion].question + '</h6>');
+		 
+		 for (var i = 0; i < questions[currentQuestion].ansOptions.length; i++) {
+		    $("#gamearea").append('<button class="answer-button" id="button-' + i + ' "data-name="' + questions[currentQuestion].ansOptions[i] + '">'+ questions[currentQuestion].ansOptions[i] + '</button>');	
+		}   
+		
+	 }
+
+	function nextQuestion() {
+		timer = 10;
+		$("#timer").html(timer);
+		currentQuestion++
+		newQuestion();		
 	}
 
-    function startGame() {
-    	$("#gamearea").html("<p>" + counter + "</span> seconds left!</p>");
-    	$("#startBtn").hide();
-		newQuestion();
-    	timer();
-    	timeUp();
-    }
-
-    $("#startBtn").click(nextQuestion);
-
-    startGame();
-
-   
-	$("#gamearea").on("click", ".ansOptions", (function() {
-		var userGuess = $(this).text();
-		if (userGuess === questions[currentQuestion].correctAnswer) {
-			clearInterval(clock);
-			win();
+	 function timeUp(){
+		 clearInterval(clock);
+		 $("#timer").html(timer);
+		 unanswered++;
+		 $("#gamearea").html("<h3> Time up! </h3>"); 
+		 $("#gamearea").append("<h3> The correct answer was: " + questions[currentQuestion].correctAnswer + "</h3>");
+		
+		 if (currentQuestion === questions.length -1 ){
+			 setTimeout(scoreBoard, 3 * 1000);
+		 } else {
+			 setTimeout(nextQuestion, 3 * 1000);
+		 }
+		
 		}
-		else {
-			clearInterval(clock);
+
+	 function scoreBoard(){
+		clearInterval(clock);
+		$("#gamearea").html("<p> <strong> Game Over!  </strong> </p>");
+		$("#gamearea").append('<p>Correct Answers: ' + correct + ' Incorrect Answers:' + incorrect+ '</p>');
+		$("#gamearea").append('<p>Unanswered: ' + unanswered + '</p>');
+		$("#gamearea").append('<button id = "play-again">  Play Again </button>');
+	 }
+
+
+	 function clicked(e) {
+		clearInterval(clock);
+		if($(e.target).data("name") === questions[currentQuestion].correctAnswer){
+			win(); 
+		} else{
 			loss();
 		}
-	}));
-});
+	 }
+
+
+	 function win() {
+		clearInterval(clock);
+		correct++;
+		$("#gamearea").html("<h3> Correct! </h3>");
+		if (currentQuestion === questions.length - 1 ){
+			setTimeout(scoreBoard, 3 * 1000);
+		} else{
+			setTimeout(nextQuestion, 3 * 1000);
+		}
+	 }
+
+	 function loss() {
+		clearInterval(clock);
+		incorrect++;
+		$("#gamearea").html("<h3> Incorrect! </h3>");
+		$("#gamearea").append("<p> The correct answer was: " + questions[currentQuestion].correctAnswer + "</h3>");
+		if (currentQuestion == questions.length - 1 ){
+			setTimeout(scoreBoard, 3 * 1000);
+		} else{
+			setTimeout(nextQuestion, 3 * 1000);
+		}
+	 }
+
+	 function resetGame(){
+	    currentQuestion = 0;
+		timer = 0 ;
+		correct = 0;
+		incorrect = 0;
+		unanswered = 0;
+		newQuestion();
+	  }
+
+
+
+
+
+	
+
+
+
