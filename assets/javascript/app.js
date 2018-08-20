@@ -18,15 +18,16 @@ $(document).ready(function() {
 	
     var questions = [
       {
-	    question: "Who founded Marvel Comics?",
-	    ansOptions: ["Martin York", "Martin Goodman", "Martin Dryden ", "Martin Canterbury "],
-	    correctAnswer: "Martin Goodman",
-	    image: "<img src='assets/images/'>"
+	    question: "Which character or characters was not present during at least part of the first reign of Pharaoh Rama-Tut in ancient Egypt?",
+	    ansOptions: ["Doctor Strange", "Spider-Man", "Apocalypse ", " The Fantastic Four"],
+	    correctAnswer: "Spider-Man",
+	    image: "<img src= 'assets/images/spidermanicon.png>"   
 	  }, 
+
 	  {
-	    question: "Which Organization ....?",
-	    ansOptions: ["KGB", "SPR", "WFS", "POE"],
-	    correctAnswer: "KGB",
+	    question: "As herald of Galactus, which of the four elements could Terrax the Tamer control with his cosmic power ?",
+	    ansOptions: ["Fire", "Water", "Air", "Earth"],
+	    correctAnswer: "Earth",
 	    image: "<img src='assets/images/'>"
       }];
       
@@ -48,8 +49,8 @@ $(document).ready(function() {
 	
 	 function newQuestion() {
 		clock = setInterval(countDown, 1000);
-		$("#gamearea").append('<p> <span id = "timer">10 </span> seconds left</p>');
-		 $("#gamearea").html('<h4>' + questions[currentQuestion].question + '</h4>');
+		$("#gamearea").html('<p> <span id = "timer">10 </span> seconds left</p>');
+		 $("#gamearea").append('<h4>' + questions[currentQuestion].question + '</h4>');
 		 
 		 for (var i = 0; i < questions[currentQuestion].ansOptions.length; i++) {
 		    $("#gamearea").append('<button class="answer-button" id="button-' + i + ' "data-name="' + questions[currentQuestion].ansOptions[i] + '">'+ questions[currentQuestion].ansOptions[i] + '</button>');	
@@ -101,6 +102,7 @@ $(document).ready(function() {
 		clearInterval(clock);
 		correct++;
 		$("#gamearea").html("<h4> Correct! </h4>");
+		$("#gamearea").append('<img src = " '+ questions[currentQuestion].image + ' "/>');
 		if (currentQuestion == questions.length - 1 ){
 			setTimeout(scoreBoard, 3 * 1000);
 		} else{
@@ -113,6 +115,7 @@ $(document).ready(function() {
 		incorrect++;
 		$("#gamearea").html("<h4> Incorrect! </h4>");
 		$("#gamearea").append("<p> The correct answer was: " + questions[currentQuestion].correctAnswer + "</h3>");
+		$("#gamearea").append('<img src = " '+questions[currentQuestion].image + ' " />');
 		if (currentQuestion == questions.length - 1 ){
 			setTimeout(scoreBoard, 3 * 1000);
 		} else{
