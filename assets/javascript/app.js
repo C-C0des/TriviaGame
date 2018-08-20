@@ -29,7 +29,18 @@ $(document).ready(function() {
 	    ansOptions: ["Fire", "Water", "Air", "Earth"],
 	    correctAnswer: "Earth",
 	    image: "<img src='assets/images/'>"
-      }];
+	  },
+
+	  {
+	    question: "What is the Supreme Intelligence of the Kree?",
+	    ansOptions: ["A wholly artificial intelligence", "A genetically engineered life-form", "A mutated Kree with extraordinarily high intellect ", "A computer system containing the brains of the greatest Kree in history "],
+	    correctAnswer: "A computer system containing the brains of the greatest Kree in history",
+	    image: "<img src='assets/images/'>"
+      }
+	
+	
+	
+	];
       
 
       var currentQuestion = 0;
