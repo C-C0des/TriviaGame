@@ -39,7 +39,6 @@ $(document).ready(function() {
       }
 	
 	
-	
 	];
       
 
@@ -93,7 +92,8 @@ $(document).ready(function() {
 	 function scoreBoard(){
 		clearInterval(clock);
 		$("#gamearea").html("<p> <strong> Game Over!  </strong> </p>");
-		$("#gamearea").append('<p>Correct Answers: ' + correct + ' ' +' Incorrect Answers:' + incorrect+ '</p>');
+		$("#gamearea").append('<p>Correct Answers: ' + correct + '</p>');
+		$("#gamearea").append('<p>Incorrect Answers:' + incorrect+ '</p>');
 		$("#gamearea").append('<p>Unanswered: ' + unanswered + '</p>');
 		$("#gamearea").append('<button id = "play-again">  Play Again </button>');
 	 }
