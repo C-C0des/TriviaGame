@@ -1,5 +1,12 @@
+*
+{
+  margin:0;   /* Every browser has some default padding and margin. By writing the above lines on the top your css file you are saying that every element (denoted by *) should have margin and padding as 0 when the page loads.*/
+  padding:0;
+}
+
+
 body { 
-    margin: auto;
+    margin: 0 auto;
     background-color: darkred;
     color:white;
 }

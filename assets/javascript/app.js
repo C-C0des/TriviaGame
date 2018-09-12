@@ -32,13 +32,61 @@ $(document).ready(function() {
 	  },
 
 	  {
+	    question: "Who is Agent 13 of S.H.I.E.L.D. ?",
+	    ansOptions: ["Jasper Sitwell", "Sharon Carter", "Nick Fury", "Countess Valentina de la Fontaine"],
+	    correctAnswer: "Sharon Carter",
+	    image: "<img src='assets/images/'>"
+	  },
+
+	  {
 	    question: "What is the Supreme Intelligence of the Kree?",
 	    ansOptions: ["A wholly artificial intelligence", "A genetically engineered life-form", "A mutated Kree with extraordinarily high intellect ", "A computer system containing the brains of the greatest Kree in history "],
 	    correctAnswer: "A computer system containing the brains of the greatest Kree in history",
 	    image: "<img src='assets/images/'>"
-      }
-	
-	
+	  },
+
+	  {
+	    question: "How long did the Hulk stay with the Avengers?",
+	    ansOptions: ["Two issues", "One issue", "He never accepted membership", "Three issues"],
+	    correctAnswer: "Two issues",
+	    image: "<img src='assets/images/'>"
+	  },
+
+	  {
+	    question: "When was the Daily Bugle founded?",
+	    ansOptions: ["1948", "1897", "1948", "1923"],
+	    correctAnswer: "1897",
+	    image: "<img src='assets/images/'>"
+	  },
+	  
+	  {
+	    question: "Vibranium, the metal found in Wakanda, absorbs vibrations. What does Antarctic Vibranium do?",
+	    ansOptions: ["Liquefies metal", "Emits lethal radiation", "Absorbs vibrations ", "Antarctiv vibranium does not exist"],
+	    correctAnswer: "Liquefies metal",
+	    image: "<img src='assets/images/'>"
+	  },
+
+	  {
+	    question: "Who is the Warlock of the New Mutants",
+	    ansOptions: ["A techno-organic alien", "The Maha Yogi", "A mutant sorcerer", "Adam Warlock"],
+	    correctAnswer: "A techno-organic alien",
+	    image: "<img src='assets/images/'>"
+	  },
+
+	  {
+	    question: "Who was the first menance to appear in a Doctor Strange story",
+	    ansOptions: ["Shazana", "Baron Mordo", "Nightmare", "Dormanmu"],
+	    correctAnswer: "Nightmare",
+	    image: "<img src='assets/images/'>"
+	  },
+
+	  {
+	    question: "What continually fustrated Luke Cage at the Gem Theater?",
+	    ansOptions: ["Noise from the audience ", "D.W.'s obession with film history", "A malfunctioning soda machine", "An annoying customer"],
+	    correctAnswer: "A malfunctioning soda machine",
+	    image: "<img src='assets/images/'>"
+	  }
+	  
 	];
       
 
